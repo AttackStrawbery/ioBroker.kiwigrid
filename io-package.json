@@ -1,0 +1,572 @@
+{
+    "common": {
+        "name": "kiwigrid",
+        "version": "0.0.8",
+        "news": {
+            "0.0.1": {
+                "en": "initial version",
+                "de": "Initial Version"
+            }
+        },
+		"title": "Javascript/Node.js based kiwigrid adapter",
+        "titleLang": {
+            "en": "Javascript/Node.js based kiwigrid adapter",
+            "de": "Javascript / Node.js based kiwigrid adapter"
+        },
+        "desc": {
+            "en": "ioBroker kiwigrid Adapter",
+            "de": "ioBroker kiwigrid Adapter"
+        },
+        "authors": [
+            "Thomas Hepper <thomas@hepper.eu>"
+        ],
+        "docs": {
+            "en": "docs/en/admin.md",
+            "de": "docs/de/admin.md"
+        },
+        "platform": "Javascript/Node.js",
+        "mode": "schedule",
+        "schedule": "*/30 * * * * *",
+        "icon": "kiwigrid.png",
+        "materialize": true,
+        "enabled": true,
+        "extIcon": "http://gitlab.lan/guru/ioBroker.kiwigrid/blob/master/admin/myreserve.png",
+        "keywords": ["kiwigrid"],
+        "readme": "http://gitlab.lan/guru/ioBroker.kiwigrid/blob/master/README.md",
+        "loglevel": "info",
+        "type": "general"
+    },
+    "native": {
+        "ip": "0.0.0.0",
+        "port": 80,
+        "user": "",
+        "password": "",
+        "batteryConverterUrn": "com.kiwigrid.devices.batteryconverter.BatteryConverter",
+        "gridConverterUrn": "com.kiwigrid.device.sma.SMAInverter",
+        "locationUrn": "com.kiwigrid.devices.location.Location"
+    },
+    "objects": [
+    ],
+    "instanceObjects": [
+      {
+          "_id": "bc.TemperatureBattery",
+          "type": "state",
+          "common": {
+              "name":  "TemperatureBattery",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "TemperatureBattery"
+          },
+          "native": {}
+      },
+      {
+          "_id": "bc.StateOfCharge",
+          "type": "state",
+          "common": {
+              "name":  "StateOfCharge",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "StateOfCharge"
+          },
+          "native": {}
+      },
+      {
+          "_id": "bc.VoltageBatteryString",
+          "type": "state",
+          "common": {
+              "name":  "VoltageBatteryString",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "VoltageBatteryString"
+          },
+          "native": {}
+      },
+      {
+          "_id": "bc.CurrentBatteryOut",
+          "type": "state",
+          "common": {
+              "name":  "CurrentBatteryOut",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "CurrentBatteryOut"
+          },
+          "native": {}
+      },
+      {
+          "_id": "bc.StateOfHealth",
+          "type": "state",
+          "common": {
+              "name":  "StateOfHealth",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "StateOfHealth"
+          },
+          "native": {}
+      },
+      {
+          "_id": "bc.PowerACOut",
+          "type": "state",
+          "common": {
+              "name":  "PowerACOut",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "PowerACOut"
+          },
+          "native": {}
+      },
+      {
+          "_id": "bc.PowerACIn",
+          "type": "state",
+          "common": {
+              "name":  "PowerACIn",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "PowerACIn"
+          },
+          "native": {}
+      },
+      {
+          "_id": "bc.VoltageGRMIn",
+          "type": "state",
+          "common": {
+              "name":  "VoltageGRMIn",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "VoltageGRMIn"
+          },
+          "native": {}
+      },
+      {
+          "_id": "bc.CurrentGRMIn",
+          "type": "state",
+          "common": {
+              "name":  "CurrentGRMIn",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "CurrentGRMIn"
+          },
+          "native": {}
+      },
+      {
+          "_id": "bc.CurrentGRMOut",
+          "type": "state",
+          "common": {
+              "name":  "CurrentGRMOut",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "CurrentGRMOut"
+          },
+          "native": {}
+      },
+      {
+          "_id": "bc.VoltageGRMOut",
+          "type": "state",
+          "common": {
+              "name":  "VoltageGRMOut",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "VoltageGRMOut"
+          },
+          "native": {}
+      },
+      {
+          "_id": "bc.CurrentBatteryIn",
+          "type": "state",
+          "common": {
+              "name":  "CurrentBatteryIn",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "CurrentBatteryIn"
+          },
+          "native": {}
+      },
+      {
+          "_id": "bc.WorkACOut",
+          "type": "state",
+          "common": {
+              "name":  "WorkACOut",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "WorkACOut"
+          },
+          "native": {}
+      },
+      {
+          "_id": "bc.WorkACIn",
+          "type": "state",
+          "common": {
+              "name":  "WorkACIn",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "WorkACIn"
+          },
+          "native": {}
+      },
+      {
+          "_id": "inv.ACPower",
+          "type": "state",
+          "common": {
+              "name":  "ACPower",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "ACPower"
+          },
+          "native": {}
+      },
+      {
+          "_id": "inv.PowerACOut",
+          "type": "state",
+          "common": {
+              "name":  "PowerACOut",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "PowerACOut"
+          },
+          "native": {}
+      },
+      {
+          "_id": "inv.PowerACOutLimit",
+          "type": "state",
+          "common": {
+              "name":  "PowerACOutLimit",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "PowerACOutLimit"
+          },
+          "native": {}
+      },
+      {
+          "_id": "inv.PowerACOutMax",
+          "type": "state",
+          "common": {
+              "name":  "PowerACOutMax",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "PowerACOutMax"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.PowerBuffered",
+          "type": "state",
+          "common": {
+              "name":  "PowerBuffered",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "PowerBuffered"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.WorkConsumedFromStorage",
+          "type": "state",
+          "common": {
+              "name":  "WorkConsumedFromStorage",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "WorkConsumedFromStorage"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.WorkProduced",
+          "type": "state",
+          "common": {
+              "name":  "WorkProduced",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "WorkProduced"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.WorkSelfSupplied",
+          "type": "state",
+          "common": {
+              "name":  "WorkSelfSupplied",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "WorkSelfSupplied"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.PowerConsumedFromGrid",
+          "type": "state",
+          "common": {
+              "name":  "PowerConsumedFromGrid",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "PowerConsumedFromGrid"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.WorkOut",
+          "type": "state",
+          "common": {
+              "name":  "WorkOut",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "WorkOut"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.PowerProduced",
+          "type": "state",
+          "common": {
+              "name":  "PowerProduced",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "PowerProduced"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.PowerOut",
+          "type": "state",
+          "common": {
+              "name":  "PowerOut",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "PowerOut"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.WorkOutFromProducers",
+          "type": "state",
+          "common": {
+              "name":  "WorkOutFromProducers",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "WorkOutFromProducers"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.PowerConsumedFromStorage",
+          "type": "state",
+          "common": {
+              "name":  "PowerConsumedFromStorage",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "PowerConsumedFromStorage"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.PowerBufferedFromProducers",
+          "type": "state",
+          "common": {
+              "name":  "PowerBufferedFromProducers",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "PowerBufferedFromProducers"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.PowerOutFromStorage",
+          "type": "state",
+          "common": {
+              "name":  "PowerOutFromStorage",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "PowerOutFromStorage"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.PowerSelfSupplied",
+          "type": "state",
+          "common": {
+              "name":  "PowerSelfSupplied",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "PowerSelfSupplied"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.PowerOutFromProducers",
+          "type": "state",
+          "common": {
+              "name":  "PowerOutFromProducers",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "PowerOutFromProducers"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.WorkIn",
+          "type": "state",
+          "common": {
+              "name":  "WorkIn",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "WorkIn"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.WorkBuffered",
+          "type": "state",
+          "common": {
+              "name":  "WorkBuffered",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "WorkBuffered"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.PowerOut",
+          "type": "state",
+          "common": {
+              "name":  "PowerOut",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "PowerOut"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.PowerBufferedFromGrid",
+          "type": "state",
+          "common": {
+              "name":  "PowerBufferedFromGrid",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "PowerBufferedFromGrid"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.WorkReleased",
+          "type": "state",
+          "common": {
+              "name":  "WorkReleased",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "WorkReleased"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.PowerConsumed",
+          "type": "state",
+          "common": {
+              "name":  "PowerConsumed",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "PowerConsumed"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.WorkBufferedFromProducers",
+          "type": "state",
+          "common": {
+              "name":  "WorkBufferedFromProducers",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "WorkBufferedFromProducers"
+          },
+          "native": {}
+      },
+      {
+          "_id": "pl.PowerIn",
+          "type": "state",
+          "common": {
+              "name":  "PowerIn",
+              "type":  "number",
+              "role":  "value",
+              "read":  true,
+              "write": false,
+              "desc":  "PowerIn"
+          },
+          "native": {}
+      }
+    ]
+}

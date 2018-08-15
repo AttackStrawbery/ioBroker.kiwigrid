@@ -1,0 +1,43 @@
+{
+  "name": "iobroker.kiwigrid",
+  "version": "0.0.8",
+  "description": "ioBroker kiwigrid Adapter",
+  "author": {
+    "name": "Thomas Hepper",
+    "email": "thomas@hepper.eu"
+  },
+  "contributors": [
+    {
+      "name": "Thomas Hepper",
+      "email": "thomas@hepper.eu"
+    }
+  ],
+  "homepage": "http://gitlab.lan/guru/ioBroker.kiwigrid",
+  "license": "MIT",
+  "keywords": [
+    "ioBroker",
+    "kiwigrid",
+    "Smart Home",
+    "home automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://gitlab.lan/guru/ioBroker.kiwigrid"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "mocha": "^4.1.0",
+    "chai": "^4.1.2",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  },
+  "main": "main.js",
+  "scripts": {
+    "test": "node node_modules/mocha/bin/mocha --exit"
+  },
+  "bugs": {
+    "url": "http://gitlab.lan/guru/ioBroker.kiwigrid/issues"
+  },
+  "readmeFilename": "README.md"
+}
