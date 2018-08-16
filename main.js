@@ -120,7 +120,8 @@ function main() {
         var arrFound;
         for (var i = 0; i < json.result.items.length;i++) {
             var lookup = json.result.items[i].deviceModel.filter(function(item) {
-              return item.deviceClass == batteryConverterUrn
+                adapter.log.debug("deviceClass" + item.deviceClass);
+                return item.deviceClass == batteryConverterUrn
             });
 
             if (lookup != "") {
@@ -153,50 +154,7 @@ function main() {
                         adapter.log.debug("type : " + type);
                     break;
                 }
-            }
- /*         
-            adapter.setState('bc.TemperatureBattery',parseInt(arrFound.tagValues.TemperatureBattery.value,10));
-            adapter.log.debug('bc.TemperatureBattery: ' + arrFound.tagValues.TemperatureBattery.value);
-
-            adapter.setState('bc.StateOfCharge',parseInt(arrFound.tagValues.StateOfCharge.value,10));
-            adapter.log.debug('bc.StateOfCharge: ' + arrFound.tagValues.StateOfCharge.value);
-
-            adapter.setState('bc.VoltageBatteryString',parseInt(arrFound.tagValues.VoltageBatteryString.value,10));
-            adapter.log.debug('bc.VoltageBatteryString: ' + arrFound.tagValues.VoltageBatteryString.value);
-
-            adapter.setState('bc.CurrentBatteryOut',parseInt(arrFound.tagValues.CurrentBatteryOut.value,10));
-            adapter.log.debug('bc.CurrentBatteryOut: ' + arrFound.tagValues.CurrentBatteryOut.value);
-
-            adapter.setState('bc.StateOfHealth',parseInt(arrFound.tagValues.StateOfHealth.value,10));
-            adapter.log.debug('bc.StateOfHealth: ' + arrFound.tagValues.StateOfHealth.value);
-
-            adapter.setState('bc.PowerACOut',parseInt(arrFound.tagValues.PowerACOut.value,10));
-            adapter.log.debug('bc.PowerACOut: ' + arrFound.tagValues.PowerACOut.value);
-
-            adapter.setState('bc.PowerACIn',parseInt(arrFound.tagValues.PowerACIn.value,10));
-            adapter.log.debug('bc.PowerACIn: ' + arrFound.tagValues.PowerACIn.value);
-
-            adapter.setState('bc.VoltageGRMIn',parseInt(arrFound.tagValues.VoltageGRMIn.value,10));
-            adapter.log.debug('bc.VoltageGRMIn: ' + arrFound.tagValues.VoltageGRMIn.value);
-
-            adapter.setState('bc.CurrentGRMIn',parseInt(arrFound.tagValues.CurrentGRMIn.value,10));
-            adapter.log.debug('bc.CurrentGRMIn: ' + arrFound.tagValues.CurrentGRMIn.value);
-
-            adapter.setState('bc.CurrentGRMOut',parseInt(arrFound.tagValues.VoltageGRMIn.value,10));
-            adapter.log.debug('bc.CurrentGRMOut: ' + arrFound.tagValues.VoltageGRMIn.value);
-
-            adapter.setState('bc.VoltageGRMOut',parseInt(arrFound.tagValues.VoltageGRMOut.value,10));
-            adapter.log.debug('bc.VoltageGRMOut: ' + arrFound.tagValues.VoltageGRMOut.value);
-
-            adapter.setState('bc.CurrentBatteryIn',parseInt(arrFound.tagValues.VoltageGRMIn.value,10));
-            adapter.log.debug('bc.CurrentBatteryIn: ' + arrFound.tagValues.VoltageGRMIn.value);
-
-            adapter.setState('bc.WorkACOut',parseInt(arrFound.tagValues.WorkACOut.value,10));
-            adapter.log.debug('bc.WorkACOut: ' + arrFound.tagValues.WorkACOut.value);
-
-            adapter.setState('bc.WorkACIn',parseInt(arrFound.tagValues.WorkACIn.value,10));
-            adapter.log.debug('bc.WorkACIn: ' + arrFound.tagValues.WorkACIn.value);
- */        
+            }    
         }
 
         arrFound = "";
@@ -235,18 +193,7 @@ function main() {
                     break;
                 }
             }
-/*             adapter.setState('inv.ACPower',parseInt(arrFound.tagValues.ACPower.value,10));
-            adapter.log.debug('inv.ACPower: ' + arrFound.tagValues.ACPower.value);
-
-            adapter.setState('inv.PowerACOut',parseInt(arrFound.tagValues.PowerACOut.value,10));
-            adapter.log.debug('inv.PowerACOut: ' + arrFound.tagValues.PowerACOut.value);
-
-            adapter.setState('inv.PowerACOutLimit',parseInt(arrFound.tagValues.PowerACOutLimit.value,10));
-            adapter.log.debug('inv.PowerACOutLimit: ' + arrFound.tagValues.PowerACOutLimit.value);
-
-            adapter.setState('inv.PowerACOutMax',parseInt(arrFound.tagValues.PowerACOutMax.value,10));
-            adapter.log.debug('inv.PowerACOutMax: ' + arrFound.tagValues.PowerACOutMax.value); */
-        }
+       }
 
         arrFound = "";
         for (var i = 0; i < json.result.items.length;i++) {
@@ -276,7 +223,7 @@ function main() {
                     break;
 
                     case "string":
-                        updateObject("inv",arrFound.tagValues[j].tagName,type,value,"value");
+                        updateObject("pl",arrFound.tagValues[j].tagName,type,value,"value");
                     break;
 
                     default:
@@ -285,70 +232,7 @@ function main() {
                     break;
                 }
             }
-
- /*            adapter.setState('pl.PowerBuffered',parseInt(arrFound.tagValues.PowerBuffered.value,10));
-            adapter.log.debug('pl.PowerBuffered: ' + arrFound.tagValues.PowerBuffered.value);
-
-            adapter.setState('pl.WorkConsumedFromStorage',parseInt(arrFound.tagValues.WorkConsumedFromStorage.value,10));
-            adapter.log.debug('pl.WorkConsumedFromStorage: ' + arrFound.tagValues.WorkConsumedFromStorage.value);
-
-            adapter.setState('pl.WorkProduced',parseInt(arrFound.tagValues.WorkProduced.value,10));
-            adapter.log.debug('pl.WorkProduced: ' + arrFound.tagValues.WorkProduced.value);
-
-            adapter.setState('pl.WorkSelfSupplied',parseInt(arrFound.tagValues.WorkSelfSupplied.value,10));
-            adapter.log.debug('pl.WorkSelfSupplied: ' + arrFound.tagValues.WorkSelfSupplied.value);
-
-            adapter.setState('pl.PowerConsumedFromGrid',parseInt(arrFound.tagValues.PowerConsumedFromGrid.value,10));
-            adapter.log.debug('pl.PowerConsumedFromGrid: ' + arrFound.tagValues.PowerConsumedFromGrid.value);
-
-            adapter.setState('pl.WorkOut',parseInt(arrFound.tagValues.WorkOut.value,10));
-            adapter.log.debug('pl.WorkOut: ' + arrFound.tagValues.WorkOut.value);
-
-            adapter.setState('pl.PowerProduced',parseInt(arrFound.tagValues.PowerProduced.value,10));
-            adapter.log.debug('pl.PowerProduced: ' + arrFound.tagValues.PowerProduced.value);
-
-            adapter.setState('pl.PowerOut',parseInt(arrFound.tagValues.PowerOut.value,10));
-            adapter.log.debug('pl.PowerOut: ' + arrFound.tagValues.PowerOut.value);
-
-            adapter.setState('pl.WorkOutFromProducers',parseInt(arrFound.tagValues.WorkOutFromProducers.value,10));
-            adapter.log.debug('pl.WorkOutFromProducers: ' + arrFound.tagValues.WorkOutFromProducers.value);
-
-            adapter.setState('pl.PowerConsumedFromStorage',parseInt(arrFound.tagValues.PowerConsumedFromStorage.value,10));
-            adapter.log.debug('pl.PowerConsumedFromStorage: ' + arrFound.tagValues.PowerConsumedFromStorage.value);
-
-            adapter.setState('pl.PowerBufferedFromProducers',parseInt(arrFound.tagValues.PowerBufferedFromProducers.value,10));
-            adapter.log.debug('pl.PowerBufferedFromProducers: ' + arrFound.tagValues.PowerBufferedFromProducers.value);
-
-            adapter.setState('pl.PowerOutFromStorage',parseInt(arrFound.tagValues.PowerOutFromStorage.value,10));
-            adapter.log.debug('pl.PowerOutFromStorage: ' + arrFound.tagValues.PowerOutFromStorage.value);
-
-            adapter.setState('pl.PowerSelfSupplied',parseInt(arrFound.tagValues.PowerSelfSupplied.value,10));
-            adapter.log.debug('pl.PowerSelfSupplied: ' + arrFound.tagValues.PowerSelfSupplied.value);
-
-            adapter.setState('pl.PowerOutFromProducers',parseInt(arrFound.tagValues.PowerOutFromProducers.value,10));
-            adapter.log.debug('pl.PowerOutFromProducers: ' + arrFound.tagValues.PowerOutFromProducers.value);
-
-            adapter.setState('pl.WorkIn',parseInt(arrFound.tagValues.WorkIn.value,10));
-            adapter.log.debug('pl.WorkIn: ' + arrFound.tagValues.WorkIn.value);
-
-            adapter.setState('pl.WorkBuffered',parseInt(arrFound.tagValues.WorkBuffered.value,10));
-            adapter.log.debug('pl.WorkBuffered: ' + arrFound.tagValues.WorkBuffered.value);
-
-            adapter.setState('pl.PowerBufferedFromGrid',parseInt(arrFound.tagValues.PowerBufferedFromGrid.value,10));
-            adapter.log.debug('pl.PowerBufferedFromGrid: ' + arrFound.tagValues.PowerBufferedFromGrid.value);
-
-            adapter.setState('pl.WorkReleased',parseInt(arrFound.tagValues.WorkReleased.value,10));
-            adapter.log.debug('pl.WorkReleased: ' + arrFound.tagValues.WorkReleased.value);
-
-            adapter.setState('pl.PowerConsumed',parseInt(arrFound.tagValues.PowerConsumed.value,10));
-            adapter.log.debug('pl.PowerConsumed: ' + arrFound.tagValues.PowerConsumed.value);
-
-            adapter.setState('pl.WorkBufferedFromProducers',parseInt(arrFound.tagValues.WorkBufferedFromProducers.value,10));
-            adapter.log.debug('pl.WorkBufferedFromProducers: ' + arrFound.tagValues.WorkBufferedFromProducers.value);
-
-            adapter.setState('pl.PowerIn',parseInt(arrFound.tagValues.PowerIn.value,10));
-            adapter.log.debug('pl.PowerIn: ' + arrFound.tagValues.PowerIn.value); */
-        }
+      }
     callBackCount--;
 
     })
