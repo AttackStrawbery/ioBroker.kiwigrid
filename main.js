@@ -321,7 +321,7 @@ waitCallBack();
 }
 
 function updateObject(group,tag,type,value) {
-    adapter.setObjectNotExists(
+/*     adapter.setObjectNotExists(
         group + "." + tag, {
             type: 'state',
             common: {
@@ -334,7 +334,7 @@ function updateObject(group,tag,type,value) {
             group + "." + tag,
             {val: value, ack: true}
         )
-    );
+    ); */
 }
 
 function waitCallBack()  {
