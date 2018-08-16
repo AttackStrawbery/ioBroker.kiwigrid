@@ -131,8 +131,30 @@ function main() {
 
         if (arrFound != "" ) {
             for ( var j in arrFound.tagValues) {
-                adapter.log.debug("tagName : " + j + "/" + arrFound.tagValues[j].tagName)
+                var value = arrFound.tagValues[j].value;
+                var type = typeof value;
+
+
+                switch (type) {
+                    case "number":
+                        updateObject("bc",tag,type,value)
+                    break;
+
+                    case "boolean":
+                        updateObject("bc",tag,type,value)
+                    break;
+
+                    case "string":
+                        updateObject("bc",tag,type,value)
+                    break;
+
+                    default:
+                        adapter.log.debug("tagName : " + j + "/" + arrFound.tagValues[j].tagName)
+                        adapter.log.debug("type : " + type);
+                    break;
+                }
             }
+ /*         
             adapter.setState('bc.TemperatureBattery',parseInt(arrFound.tagValues.TemperatureBattery.value,10));
             adapter.log.debug('bc.TemperatureBattery: ' + arrFound.tagValues.TemperatureBattery.value);
 
@@ -174,6 +196,7 @@ function main() {
 
             adapter.setState('bc.WorkACIn',parseInt(arrFound.tagValues.WorkACIn.value,10));
             adapter.log.debug('bc.WorkACIn: ' + arrFound.tagValues.WorkACIn.value);
+ */        
         }
 
         arrFound = "";
@@ -297,6 +320,22 @@ function main() {
 waitCallBack();
 }
 
+function updateObject(group,tag,type,value) {
+    adapter.setObjectNotExists(
+        group + "." + tag, {
+            type: 'state',
+            common: {
+                name: tag,
+                type: type
+            },
+            native: {}
+        },
+        adapter.setState(
+            group + "." + tag,
+            {val: value, ack: true}
+        )
+    );
+}
 
 function waitCallBack()  {
 	//here is the trick, wait until var callbackCount is set number of callback functions
