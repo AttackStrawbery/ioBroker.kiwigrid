@@ -188,6 +188,9 @@ function main() {
             }
         }
         if (arrFound != "") {
+            for ( var j in arrFound.tagValues) {
+                adapter.log.debug("tagName : " + j + "/" + arrFound.tagValues[j].tagName)
+            }
             adapter.setState('inv.ACPower',parseInt(arrFound.tagValues.ACPower.value,10));
             adapter.log.debug('inv.ACPower: ' + arrFound.tagValues.ACPower.value);
 
@@ -214,6 +217,12 @@ function main() {
         }
 
         if (arrFound != "") {
+            for ( var j in arrFound.tagValues) {
+                var value = arrFound.tagValues[j].value;
+                var type = typeof value;
+                adapter.log.debug("tagName : "  j + "/" + arrFound.tagValues[j].tagName)
+                adapter.log.debug("type : " + type);
+            }
             adapter.setState('pl.PowerBuffered',parseInt(arrFound.tagValues.PowerBuffered.value,10));
             adapter.log.debug('pl.PowerBuffered: ' + arrFound.tagValues.PowerBuffered.value);
 
@@ -228,7 +237,6 @@ function main() {
 
             adapter.setState('pl.PowerConsumedFromGrid',parseInt(arrFound.tagValues.PowerConsumedFromGrid.value,10));
             adapter.log.debug('pl.PowerConsumedFromGrid: ' + arrFound.tagValues.PowerConsumedFromGrid.value);
-
 
             adapter.setState('pl.WorkOut',parseInt(arrFound.tagValues.WorkOut.value,10));
             adapter.log.debug('pl.WorkOut: ' + arrFound.tagValues.WorkOut.value);
