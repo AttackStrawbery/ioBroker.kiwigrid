@@ -119,7 +119,7 @@ function main() {
     .then(function (json) {
         var arrFound;
         for (var i = 0; i < json.result.items.length;i++) {
-            adapter.log.debug("deviceModel" + json.result.items[i]);
+            adapter.log.debug("deviceModel" + json.result.items[i].deviceModel.deviceClass);
             var lookup = json.result.items[i].deviceModel.filter(function(item) {     
                 return item.deviceClass == batteryConverterUrn
             });
