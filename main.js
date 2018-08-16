@@ -220,7 +220,7 @@ function main() {
             for ( var j in arrFound.tagValues) {
                 var value = arrFound.tagValues[j].value;
                 var type = typeof value;
-                adapter.log.debug("tagName : "  j + "/" + arrFound.tagValues[j].tagName)
+                adapter.log.debug("tagName : " + j + "/" + arrFound.tagValues[j].tagName)
                 adapter.log.debug("type : " + type);
             }
             adapter.setState('pl.PowerBuffered',parseInt(arrFound.tagValues.PowerBuffered.value,10));
