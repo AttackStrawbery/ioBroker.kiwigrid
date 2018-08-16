@@ -130,6 +130,9 @@ function main() {
         }
 
         if (arrFound != "" ) {
+            for ( var j in arrFound.tagValues) {
+                adapter.log.debug("tagName : " + arrFound.tagValues.j.tagName)
+            }
             adapter.setState('bc.TemperatureBattery',parseInt(arrFound.tagValues.TemperatureBattery.value,10));
             adapter.log.debug('bc.TemperatureBattery: ' + arrFound.tagValues.TemperatureBattery.value);
 

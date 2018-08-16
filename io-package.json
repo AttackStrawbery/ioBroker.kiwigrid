@@ -33,7 +33,7 @@
         "extIcon": "http://gitlab.lan/guru/ioBroker.kiwigrid/blob/master/admin/myreserve.png",
         "keywords": ["kiwigrid"],
         "readme": "http://gitlab.lan/guru/ioBroker.kiwigrid/blob/master/README.md",
-        "loglevel": "info",
+        "loglevel": "debug",
         "type": "general"
     },
     "native": {
