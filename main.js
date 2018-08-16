@@ -137,15 +137,15 @@ function main() {
 
                 switch (type) {
                     case "number":
-                        updateObject("bc",tag,type,value);
+                        updateObject("bc",arrFound.tagValues[j].tagName,type,value);
                     break;
 
                     case "boolean":
-                        updateObject("bc",tag,type,value);
+                        updateObject("bc",arrFound.tagValues[j].tagName,type,value);
                     break;
 
                     case "string":
-                        updateObject("bc",tag,type,value);
+                        updateObject("bc",arrFound.tagValues[j].tagName,type,value);
                     break;
 
                     default:
@@ -321,7 +321,7 @@ waitCallBack();
 }
 
 function updateObject(group,tag,type,value) {
-/*     adapter.setObjectNotExists(
+    adapter.setObjectNotExists(
         group + "." + tag, {
             type: 'state',
             common: {
@@ -334,7 +334,7 @@ function updateObject(group,tag,type,value) {
             group + "." + tag,
             {val: value, ack: true}
         )
-    ); */
+    );
 }
 
 function waitCallBack()  {
