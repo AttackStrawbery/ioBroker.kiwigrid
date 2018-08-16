@@ -152,6 +152,7 @@ function main() {
                     default:
                         adapter.log.debug("tagName : " + j + "/" + arrFound.tagValues[j].tagName);
                         adapter.log.debug("type : " + type);
+                        adapter.log.debug("object : " + value);
                     break;
                 }
             }    
@@ -230,6 +231,7 @@ function main() {
                     default:
                         adapter.log.debug("tagName : " + j + "/" + arrFound.tagValues[j].tagName);
                         adapter.log.debug("type : " + type);
+                        adapter.log.debug("object : " + value);
                     break;
                 }
             }
