@@ -137,15 +137,15 @@ function main() {
 
                 switch (type) {
                     case "number":
-                        updateObject("bc",arrFound.tagValues[j].tagName,type,value);
+                        updateObject("bc",arrFound.tagValues[j].tagName,type,value,"value");
                     break;
 
                     case "boolean":
-                        updateObject("bc",arrFound.tagValues[j].tagName,type,value);
+                        updateObject("bc",arrFound.tagValues[j].tagName,type,value,"value");
                     break;
 
                     case "string":
-                        updateObject("bc",arrFound.tagValues[j].tagName,type,value);
+                        updateObject("bc",arrFound.tagValues[j].tagName,type,value,"value");
                     break;
 
                     default:
@@ -212,9 +212,30 @@ function main() {
         }
         if (arrFound != "") {
             for ( var j in arrFound.tagValues) {
-                adapter.log.debug("tagName : " + j + "/" + arrFound.tagValues[j].tagName)
+                var value = arrFound.tagValues[j].value;
+                var type = typeof value;
+
+
+                switch (type) {
+                    case "number":
+                        updateObject("inv",arrFound.tagValues[j].tagName,type,value,"value");
+                    break;
+
+                    case "boolean":
+                        updateObject("inv",arrFound.tagValues[j].tagName,type,value,"value");
+                    break;
+
+                    case "string":
+                        updateObject("inv",arrFound.tagValues[j].tagName,type,value,"value");
+                    break;
+
+                    default:
+                        adapter.log.debug("tagName : " + j + "/" + arrFound.tagValues[j].tagName);
+                        adapter.log.debug("type : " + type);
+                    break;
+                }
             }
-            adapter.setState('inv.ACPower',parseInt(arrFound.tagValues.ACPower.value,10));
+/*             adapter.setState('inv.ACPower',parseInt(arrFound.tagValues.ACPower.value,10));
             adapter.log.debug('inv.ACPower: ' + arrFound.tagValues.ACPower.value);
 
             adapter.setState('inv.PowerACOut',parseInt(arrFound.tagValues.PowerACOut.value,10));
@@ -224,7 +245,7 @@ function main() {
             adapter.log.debug('inv.PowerACOutLimit: ' + arrFound.tagValues.PowerACOutLimit.value);
 
             adapter.setState('inv.PowerACOutMax',parseInt(arrFound.tagValues.PowerACOutMax.value,10));
-            adapter.log.debug('inv.PowerACOutMax: ' + arrFound.tagValues.PowerACOutMax.value);
+            adapter.log.debug('inv.PowerACOutMax: ' + arrFound.tagValues.PowerACOutMax.value); */
         }
 
         arrFound = "";
@@ -243,10 +264,29 @@ function main() {
             for ( var j in arrFound.tagValues) {
                 var value = arrFound.tagValues[j].value;
                 var type = typeof value;
-                adapter.log.debug("tagName : " + j + "/" + arrFound.tagValues[j].tagName)
-                adapter.log.debug("type : " + type);
+
+
+                switch (type) {
+                    case "number":
+                        updateObject("pl",arrFound.tagValues[j].tagName,type,value,"value");
+                    break;
+
+                    case "boolean":
+                        updateObject("pl",arrFound.tagValues[j].tagName,type,value,"value");
+                    break;
+
+                    case "string":
+                        updateObject("inv",arrFound.tagValues[j].tagName,type,value,"value");
+                    break;
+
+                    default:
+                        adapter.log.debug("tagName : " + j + "/" + arrFound.tagValues[j].tagName);
+                        adapter.log.debug("type : " + type);
+                    break;
+                }
             }
-            adapter.setState('pl.PowerBuffered',parseInt(arrFound.tagValues.PowerBuffered.value,10));
+
+ /*            adapter.setState('pl.PowerBuffered',parseInt(arrFound.tagValues.PowerBuffered.value,10));
             adapter.log.debug('pl.PowerBuffered: ' + arrFound.tagValues.PowerBuffered.value);
 
             adapter.setState('pl.WorkConsumedFromStorage',parseInt(arrFound.tagValues.WorkConsumedFromStorage.value,10));
@@ -307,7 +347,7 @@ function main() {
             adapter.log.debug('pl.WorkBufferedFromProducers: ' + arrFound.tagValues.WorkBufferedFromProducers.value);
 
             adapter.setState('pl.PowerIn',parseInt(arrFound.tagValues.PowerIn.value,10));
-            adapter.log.debug('pl.PowerIn: ' + arrFound.tagValues.PowerIn.value);
+            adapter.log.debug('pl.PowerIn: ' + arrFound.tagValues.PowerIn.value); */
         }
     callBackCount--;
 
@@ -320,13 +360,14 @@ function main() {
 waitCallBack();
 }
 
-function updateObject(group,tag,type,value) {
+function updateObject(group,tag,type,value,role) {
     adapter.setObjectNotExists(
         group + "." + tag, {
             type: 'state',
             common: {
                 name: tag,
-                type: type
+                type: type,
+                role: role
             },
             native: {}
         },
