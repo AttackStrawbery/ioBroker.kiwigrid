@@ -137,19 +137,19 @@ function main() {
 
                 switch (type) {
                     case "number":
-                        updateObject("bc",tag,type,value)
+                        updateObject("bc",tag,type,value);
                     break;
 
                     case "boolean":
-                        updateObject("bc",tag,type,value)
+                        updateObject("bc",tag,type,value);
                     break;
 
                     case "string":
-                        updateObject("bc",tag,type,value)
+                        updateObject("bc",tag,type,value);
                     break;
 
                     default:
-                        adapter.log.debug("tagName : " + j + "/" + arrFound.tagValues[j].tagName)
+                        adapter.log.debug("tagName : " + j + "/" + arrFound.tagValues[j].tagName);
                         adapter.log.debug("type : " + type);
                     break;
                 }
