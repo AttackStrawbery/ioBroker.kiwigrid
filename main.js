@@ -132,7 +132,7 @@ function main() {
                 case "com.kiwigrid.devices.inverter.Inverter":
                     group=json.result.items[i].deviceModel[2].deviceClass.split('.').reverse().pop();
                 break;
-                
+
                 case "com.kiwigrid.devices.powermeter.PowerMeter":
                     group=json.result.items[i].deviceModel[2].deviceClass.split('.').reverse().pop();
                 break;
@@ -170,8 +170,7 @@ function main() {
                 }
             }    
         }
-      }
-    callBackCount--;
+/*     callBackCount--; */
 
     })
     .catch(function (err) {
@@ -179,7 +178,7 @@ function main() {
         adapter.log.debug('call failed');
         process.exit(1);
     });
-waitCallBack();
+/* waitCallBack(); */
 }
 
 function updateObject(group,tag,type,value,role) {
