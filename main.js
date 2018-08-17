@@ -128,6 +128,7 @@ function main() {
                 adapter.log.debug("class["+ i +"] : " + json.result.items[i].deviceModel[c].deviceClass);
             } */
 
+
             switch(json.result.items[i].deviceModel[1].deviceClass) {
                 case "com.kiwigrid.devices.inverter.Inverter":
                     group=json.result.items[i].deviceModel[2].deviceClass.split('.').reverse().pop();
@@ -141,29 +142,29 @@ function main() {
                     group=json.result.items[i].deviceModel[1].deviceClass.split('.').reverse().pop();
                 break;
             }
-            for ( var j in arrFound.tagValues) {
-                var value = arrFound.tagValues[j].value;
+            for ( var j in json.result.items[i].tagValues) {
+                var value = json.result.items[i].tagValues[j].value;
                 var type = typeof value;
 
 
                 switch (type) {
                     case "number":
-                        updateObject(group,arrFound.tagValues[j].tagName,type,value,"value");
+                        updateObject(group,json.result.items[i].tagValues[j].tagName,type,value,"value");
                     break;
 
                     case "boolean":
-                        updateObject(group,arrFound.tagValues[j].tagName,type,value,"value");
+                        updateObject(group,json.result.items[i].tagValues[j].tagName,type,value,"value");
                     break;
 
                     case "string":
-                        updateObject(group,arrFound.tagValues[j].tagName,type,value,"value");
+                        updateObject(group,json.result.items[i].tagValues[j].tagName,type,value,"value");
                     break;
                     
                     case "object":
                     break;
 
                     default:
-                        adapter.log.debug("tagName : " + j + "/" + arrFound.tagValues[j].tagName);
+                        adapter.log.debug("tagName : " + j + "/" + json.result.items[i].tagValues[j].tagName);
                         adapter.log.debug("type : " + type);
                         adapter.log.debug("object : " + value);
                     break;
