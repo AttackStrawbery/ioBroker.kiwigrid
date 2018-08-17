@@ -119,9 +119,10 @@ function main() {
     .then(function (json) {
         var arrFound;
         for (var i in json.result.items) {
-            for (var c in json.result.items[i].deviceModel) {
+            adapter.log.debug("IdDriver : "+ json.result.items[i].tagValues.IdDriver.value);
+/*             for (var c in json.result.items[i].deviceModel) {
                 adapter.log.debug("class["+ i +"] : " + json.result.items[i].deviceModel[c].deviceClass);
-            }
+            } */
             var lookup = json.result.items[i].deviceModel.filter(function(item) {     
                 return item.deviceClass == batteryConverterUrn
             });
