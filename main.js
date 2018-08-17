@@ -137,7 +137,7 @@ function main() {
 
                 switch (type) {
                     case "number":
-                        var role = "value";
+                        var role = 'value';
                         if (tagName.search('Date') > -1){
                             role = 'value.datetime';
                             value = new Date(value);
@@ -145,13 +145,13 @@ function main() {
                         if (tagName.search('StateOfCharge') == 0){
                             role = 'value.battery';
                         }
-                        if (tagName.search('PowerConsum') == 0 || valTag.search('Work') == 0){
+                        if (tagName.search('PowerConsum') == 0 || tagName.search('Work') == 0){
                             role = 'value.power.consumption';
                         }
                         if (tagName.search('Temperature') == 0){
                             role = 'value.temperature';
                         }
-                        if (tagName.search('Min') > -1 && valTag.search('Minute') == -1){
+                        if (tagName.search('Min') > -1 && tagName.search('Minute') == -1){
                             role = 'value.min';
                         }
                         if (tagName.search('Max') > -1){
