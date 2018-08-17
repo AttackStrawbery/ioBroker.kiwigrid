@@ -110,10 +110,10 @@ function main() {
       },
       json: true // Automatically parses the JSON string in the response
   };
-  adapter.log.debug('energyManager : ' + energyManager);
+/*   adapter.log.debug('energyManager : ' + energyManager);
   adapter.log.debug('batteryConverterUrn : ' + batteryConverterUrn);
   adapter.log.debug('gridConverterUrn : ' + gridConverterUrn);
-  adapter.log.debug('locationUrn : ' + locationUrn);
+  adapter.log.debug('locationUrn : ' + locationUrn); */
 
   rp(options)
     .then(function (json) {
@@ -131,15 +131,15 @@ function main() {
 
             switch(json.result.items[i].deviceModel[1].deviceClass) {
                 case "com.kiwigrid.devices.inverter.Inverter":
-                    group=json.result.items[i].deviceModel[2].deviceClass.split('.').reverse().pop();
+                    group=json.result.items[i].deviceModel[2].deviceClass.split(".").pop();
                 break;
 
                 case "com.kiwigrid.devices.powermeter.PowerMeter":
-                    group=json.result.items[i].deviceModel[2].deviceClass.split('.').reverse().pop();
+                    group=json.result.items[i].deviceModel[2].deviceClass.split(".").pop();
                 break;
 
                 default:
-                    group=json.result.items[i].deviceModel[1].deviceClass.split('.').reverse().pop();
+                    group=json.result.items[i].deviceModel[1].deviceClass.split(".").pop();
                 break;
             }
             for ( var j in json.result.items[i].tagValues) {
@@ -171,7 +171,7 @@ function main() {
                 }
             }    
         }
-/*     callBackCount--; */
+    callBackCount--;
 
     })
     .catch(function (err) {
@@ -179,7 +179,7 @@ function main() {
         adapter.log.debug('call failed');
         process.exit(1);
     });
-/* waitCallBack(); */
+waitCallBack();
 }
 
 function updateObject(group,tag,type,value,role) {
