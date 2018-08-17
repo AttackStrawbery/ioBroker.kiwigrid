@@ -151,6 +151,9 @@ function main() {
                     case "string":
                         updateObject("bc",arrFound.tagValues[j].tagName,type,value,"value");
                     break;
+                    
+                    case "object":
+                    break;
 
                     default:
                         adapter.log.debug("tagName : " + j + "/" + arrFound.tagValues[j].tagName);
@@ -189,6 +192,9 @@ function main() {
 
                     case "string":
                         updateObject("inv",arrFound.tagValues[j].tagName,type,value,"value");
+                    break;
+
+                    case "object":
                     break;
 
                     default:
@@ -231,6 +237,9 @@ function main() {
                         updateObject("pl",arrFound.tagValues[j].tagName,type,value,"value");
                     break;
 
+                    case "object":
+                    break;
+                    
                     default:
                         adapter.log.debug("tagName : " + j + "/" + arrFound.tagValues[j].tagName);
                         adapter.log.debug("type : " + type);
