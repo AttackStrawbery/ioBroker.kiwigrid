@@ -117,23 +117,30 @@ function main() {
 
   rp(options)
     .then(function (json) {
-        var arrFound;
+        var group;
         for (var i in json.result.items) {
+            /*
+                deviceClass[0] => com.kiwigrid.lib.device.Device
+                deviceClass[1] => com.kiwigrid.devices.inverter.Inverter|com.kiwigrid.devices.simpleswitcher.SimpleSwitcher|com.kiwigrid.devices.location.Location....
+                deviceClass[2] => Vendor specific driver
             adapter.log.debug("deviceclass : "+ json.result.items[i].deviceModel[json.result.items[i].deviceModel.length -1].deviceClass);
 /*             for (var c in json.result.items[i].deviceModel) {
                 adapter.log.debug("class["+ i +"] : " + json.result.items[i].deviceModel[c].deviceClass);
             } */
-            var lookup = json.result.items[i].deviceModel.filter(function(item) {     
-                return item.deviceClass == batteryConverterUrn
-            });
 
-            if (lookup != "") {
-                adapter.log.debug("found : " + batteryConverterUrn);
-                arrFound = json.result.items[i];
+            switch(json.result.items[i].deviceModel[1].deviceClass) {
+                case "com.kiwigrid.devices.inverter.Inverter":
+                    group=json.result.items[i].deviceModel[2].deviceClass.split('.').reverse().pop();
+                break;
+                
+                case "com.kiwigrid.devices.powermeter.PowerMeter":
+                    group=json.result.items[i].deviceModel[2].deviceClass.split('.').reverse().pop();
+                break;
+
+                default:
+                    group=json.result.items[i].deviceModel[1].deviceClass.split('.').reverse().pop();
+                break;
             }
-        }
-
-        if (arrFound != "" ) {
             for ( var j in arrFound.tagValues) {
                 var value = arrFound.tagValues[j].value;
                 var type = typeof value;
@@ -141,15 +148,15 @@ function main() {
 
                 switch (type) {
                     case "number":
-                        updateObject("bc",arrFound.tagValues[j].tagName,type,value,"value");
+                        updateObject(group,arrFound.tagValues[j].tagName,type,value,"value");
                     break;
 
                     case "boolean":
-                        updateObject("bc",arrFound.tagValues[j].tagName,type,value,"value");
+                        updateObject(group,arrFound.tagValues[j].tagName,type,value,"value");
                     break;
 
                     case "string":
-                        updateObject("bc",arrFound.tagValues[j].tagName,type,value,"value");
+                        updateObject(group,arrFound.tagValues[j].tagName,type,value,"value");
                     break;
                     
                     case "object":
@@ -163,90 +170,6 @@ function main() {
                 }
             }    
         }
-
-        arrFound = "";
-        for (var i = 0; i < json.result.items.length;i++) {
-            var lookup = json.result.items[i].deviceModel.filter(function(item) {
-              return item.deviceClass == gridConverterUrn
-            });
-
-            if (lookup != "") {
-                adapter.log.debug("found : " + gridConverterUrn);
-                arrFound = json.result.items[i];
-            }
-        }
-        if (arrFound != "") {
-            for ( var j in arrFound.tagValues) {
-                var value = arrFound.tagValues[j].value;
-                var type = typeof value;
-
-
-                switch (type) {
-                    case "number":
-                        updateObject("inv",arrFound.tagValues[j].tagName,type,value,"value");
-                    break;
-
-                    case "boolean":
-                        updateObject("inv",arrFound.tagValues[j].tagName,type,value,"value");
-                    break;
-
-                    case "string":
-                        updateObject("inv",arrFound.tagValues[j].tagName,type,value,"value");
-                    break;
-
-                    case "object":
-                    break;
-
-                    default:
-                        adapter.log.debug("tagName : " + j + "/" + arrFound.tagValues[j].tagName);
-                        adapter.log.debug("type : " + type);
-                        adapter.log.debug("object : " + value);
-                    break;
-                }
-            }
-       }
-
-        arrFound = "";
-        for (var i = 0; i < json.result.items.length;i++) {
-            var lookup = json.result.items[i].deviceModel.filter(function(item) {
-              return item.deviceClass == locationUrn
-            });
-
-            if (lookup != "") {
-                adapter.log.debug("found : " + locationUrn);
-                arrFound = json.result.items[i];
-            }
-        }
-
-        if (arrFound != "") {
-            for ( var j in arrFound.tagValues) {
-                var value = arrFound.tagValues[j].value;
-                var type = typeof value;
-
-
-                switch (type) {
-                    case "number":
-                        updateObject("pl",arrFound.tagValues[j].tagName,type,value,"value");
-                    break;
-
-                    case "boolean":
-                        updateObject("pl",arrFound.tagValues[j].tagName,type,value,"value");
-                    break;
-
-                    case "string":
-                        updateObject("pl",arrFound.tagValues[j].tagName,type,value,"value");
-                    break;
-
-                    case "object":
-                    break;
-
-                    default:
-                        adapter.log.debug("tagName : " + j + "/" + arrFound.tagValues[j].tagName);
-                        adapter.log.debug("type : " + type);
-                        adapter.log.debug("object : " + value);
-                    break;
-                }
-            }
       }
     callBackCount--;
 
