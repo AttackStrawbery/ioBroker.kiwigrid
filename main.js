@@ -110,24 +110,11 @@ function main() {
       },
       json: true // Automatically parses the JSON string in the response
   };
-/*   adapter.log.debug('energyManager : ' + energyManager);
-  adapter.log.debug('batteryConverterUrn : ' + batteryConverterUrn);
-  adapter.log.debug('gridConverterUrn : ' + gridConverterUrn);
-  adapter.log.debug('locationUrn : ' + locationUrn); */
 
   rp(options)
     .then(function (json) {
         var group;
         for (var i in json.result.items) {
-            /*
-                deviceClass[0] => com.kiwigrid.lib.device.Device
-                deviceClass[1] => com.kiwigrid.devices.inverter.Inverter|com.kiwigrid.devices.simpleswitcher.SimpleSwitcher|com.kiwigrid.devices.location.Location....
-                deviceClass[2] => Vendor specific driver
-            adapter.log.debug("deviceclass : "+ json.result.items[i].deviceModel[json.result.items[i].deviceModel.length -1].deviceClass);
-/*             for (var c in json.result.items[i].deviceModel) {
-                adapter.log.debug("class["+ i +"] : " + json.result.items[i].deviceModel[c].deviceClass);
-            } */
-
 
             switch(json.result.items[i].deviceModel[1].deviceClass) {
                 case "com.kiwigrid.devices.inverter.Inverter":
@@ -144,20 +131,41 @@ function main() {
             }
             for ( var j in json.result.items[i].tagValues) {
                 var value = json.result.items[i].tagValues[j].value;
+                var tagName = json.result.items[i].tagValues[j].tagName;
                 var type = typeof value;
 
 
                 switch (type) {
                     case "number":
-                        updateObject(group,json.result.items[i].tagValues[j].tagName,type,value,"value");
+                        var role = "value";
+                        if (tagName.search('Date') > -1){
+                            role = 'value.datetime';
+                            value = new Date(value);
+                        }
+                        if (tagName.search('StateOfCharge') == 0){
+                            role = 'value.battery';
+                        }
+                        if (tagName.search('PowerConsum') == 0 || valTag.search('Work') == 0){
+                            role = 'value.power.consumption';
+                        }
+                        if (tagName.search('Temperature') == 0){
+                            role = 'value.temperature';
+                        }
+                        if (tagName.search('Min') > -1 && valTag.search('Minute') == -1){
+                            role = 'value.min';
+                        }
+                        if (tagName.search('Max') > -1){
+                            role = 'value.max';
+                        }
+                        updateObject(group,tagName,type,value,role);
                     break;
 
                     case "boolean":
-                        updateObject(group,json.result.items[i].tagValues[j].tagName,type,value,"value");
+                        updateObject(group,tagName,type,value,"indicator.working");
                     break;
 
                     case "string":
-                        updateObject(group,json.result.items[i].tagValues[j].tagName,type,value,"value");
+                        updateObject(group,tagName,type,value,"string");
                     break;
                     
                     case "object":
@@ -200,6 +208,7 @@ function updateObject(group,tag,type,value,role) {
     );
 }
 
+fucntion 
 function waitCallBack()  {
 	//here is the trick, wait until var callbackCount is set number of callback functions
 	if (waitCount > maxWaitCount) {
