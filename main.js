@@ -208,7 +208,6 @@ function updateObject(group,tag,type,value,role) {
     );
 }
 
-fucntion 
 function waitCallBack()  {
 	//here is the trick, wait until var callbackCount is set number of callback functions
 	if (waitCount > maxWaitCount) {
