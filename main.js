@@ -119,7 +119,7 @@ function main() {
     .then(function (json) {
         var arrFound;
         for (var i in json.result.items) {
-            adapter.log.debug("IdDriver : "+ json.result.items[i].tagValues.IdDriver.value);
+            adapter.log.debug("deviceclass : "+ json.result.items[i].deviceModel[json.result.items[i].deviceModel.length -1]);
 /*             for (var c in json.result.items[i].deviceModel) {
                 adapter.log.debug("class["+ i +"] : " + json.result.items[i].deviceModel[c].deviceClass);
             } */
@@ -239,7 +239,7 @@ function main() {
 
                     case "object":
                     break;
-                    
+
                     default:
                         adapter.log.debug("tagName : " + j + "/" + arrFound.tagValues[j].tagName);
                         adapter.log.debug("type : " + type);
