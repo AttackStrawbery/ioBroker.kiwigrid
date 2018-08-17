@@ -116,6 +116,11 @@ function main() {
         var group;
         for (var i in json.result.items) {
 
+            if (json.result.items[i].tagValues.StateVisibleIsSet.value === false) {
+                adapter.log.debug("Skip : " + json.result.items[i].guid);
+                continue;
+            }
+
             switch(json.result.items[i].deviceModel[1].deviceClass) {
                 case "com.kiwigrid.devices.inverter.Inverter":
                     group=json.result.items[i].deviceModel[2].deviceClass.split(".").pop();
